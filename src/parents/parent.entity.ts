@@ -15,6 +15,7 @@ export class Parent {
   @Column()
   contact: string;
 
+  @Column()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToMany((type) => Student, (student) => student.id)
   children: Student[];
