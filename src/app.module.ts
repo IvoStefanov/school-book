@@ -7,6 +7,7 @@ import { User } from './users/user.entity';
 import { UsersModule } from './users/users.module';
 import { Student } from './students/student.entity';
 import { StudentsModule } from './students/students.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { StudentsModule } from './students/students.module';
     }),
     UsersModule,
     StudentsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

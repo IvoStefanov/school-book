@@ -10,12 +10,12 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
-  findAll(): Promise<User[]> {
+  async findAll(): Promise<User[]> {
     return this.usersRepository.find();
   }
 
-  findOne(id: number): Promise<User | null> {
-    return this.usersRepository.findOneBy({ id });
+  async findOne(username: string): Promise<User | null> {
+    return this.usersRepository.findOneBy({ username });
   }
 
   async remove(id: number): Promise<void> {
