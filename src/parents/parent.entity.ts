@@ -1,5 +1,12 @@
 import { Student } from 'src/students/student.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { User } from 'src/users/user.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  OneToOne,
+} from 'typeorm';
 
 @Entity()
 export class Parent {
@@ -18,4 +25,8 @@ export class Parent {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToMany((type) => Student, (student) => student.id)
   children: Student[];
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  @OneToOne((type) => User, (user) => user.id)
+  user: User;
 }
