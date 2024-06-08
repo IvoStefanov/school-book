@@ -12,7 +12,7 @@ export class UsersService {
     @InjectRepository(User)
     private usersRepository: Repository<User>,
   ) {
-    createAdmin(this.dataSource, this.usersRepository);
+    // createAdmin(this.dataSource, this.usersRepository);
   }
 
   async findAll(): Promise<User[]> {

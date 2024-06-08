@@ -11,9 +11,9 @@ export async function createAdmin(
     password: 'admin',
     role: Role.Admin,
   };
-  const user = usersRepository.create(adminLike);
+  const admin = usersRepository.create(adminLike);
 
   await dataSource.transaction(async (manager) => {
-    await manager.save(user);
+    await manager.save(admin);
   });
 }
