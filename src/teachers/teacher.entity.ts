@@ -22,6 +22,7 @@ export class Teacher {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne((type) => School, (school) => school.id)
+  // @JoinColumn({ name: 'id' })
   school: School;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

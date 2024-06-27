@@ -27,4 +27,8 @@ export class Student {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne((type) => User, (user) => user.id)
   user: User;
+
+  // Absence table reference |student |subject |date
+
+  // Grades table reference |student |subject |grade
 }
