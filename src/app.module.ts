@@ -13,6 +13,13 @@ import { Teacher } from './teachers/teacher.entity';
 import { Principle } from './principles/principle.entity';
 import { Schedule } from './schedules/schedule.entity';
 import { School } from './schools/school.entity';
+import { Evaluation } from './evaluation/evaluation.entity';
+import { Absence } from './absence/absence.entity';
+import { SchoolsModule } from './schools/schools.module';
+import { TeachersModule } from './teachers/teachers.module';
+import { SchedulesModule } from './schedules/schedules.module';
+import { PrinciplesModule } from './principles/principles.module';
+import { ParentsModule } from './parents/parents.module';
 
 @Module({
   imports: [
@@ -23,12 +30,27 @@ import { School } from './schools/school.entity';
       username: 'root',
       password: 'root',
       database: 'schoolbook',
-      entities: [User, Student, Parent, Teacher, Principle, Schedule, School],
+      entities: [
+        User,
+        Student,
+        Parent,
+        Teacher,
+        Principle,
+        Schedule,
+        School,
+        Evaluation,
+        Absence,
+      ],
       synchronize: true,
       autoLoadEntities: true,
     }),
     UsersModule,
     StudentsModule,
+    SchoolsModule,
+    TeachersModule,
+    SchedulesModule,
+    PrinciplesModule,
+    ParentsModule,
     AuthModule,
   ],
   controllers: [AppController],
