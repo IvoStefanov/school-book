@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { School } from './school.entity';
 
 @Injectable()
@@ -20,5 +20,23 @@ export class SchoolsService {
 
   async remove(id: number): Promise<void> {
     await this.schoolsRepository.delete(id);
+  }
+
+  async create(
+    name: string,
+    address: string,
+    contact: string,
+    dataSource: DataSource,
+  ): Promise<void> {
+    const schoolLike = {
+      name: name,
+      address: address,
+      contact: contact,
+    };
+    const school = this.schoolsRepository.create(schoolLike);
+
+    await dataSource.transaction(async (manager) => {
+      await manager.save(school);
+    });
   }
 }
