@@ -8,7 +8,6 @@ export class LocalAuthGuard extends AuthGuard('local') {
       InstanceType<ReturnType<typeof AuthGuard>>['handleRequest']
     >
   ) {
-    console.log(args);
     return super.handleRequest(...args);
   }
 }

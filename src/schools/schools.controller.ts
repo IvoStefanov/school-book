@@ -20,9 +20,9 @@ export class SchoolsController {
   @Post('create-school')
   async createSchool(@Request() req) {
     return this.schoolsService.create(
-      req.name,
-      req.address,
-      req.contact,
+      req.body.name,
+      req.body.address,
+      req.body.contact,
       this.dataSource,
     );
   }
