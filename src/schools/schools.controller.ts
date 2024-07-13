@@ -26,4 +26,21 @@ export class SchoolsController {
       this.dataSource,
     );
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('update-school')
+  async updateSchool(@Request() req) {
+    return this.schoolsService.update(
+      req.body.id,
+      req.body.name,
+      req.body.address,
+      req.body.contact,
+    );
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('remove-school')
+  async removeSchool(@Request() req) {
+    return this.schoolsService.remove(req.body.id);
+  }
 }

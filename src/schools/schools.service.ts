@@ -22,6 +22,19 @@ export class SchoolsService {
     await this.schoolsRepository.delete(id);
   }
 
+  async update(
+    id: number,
+    name: string,
+    address: string,
+    contact: string,
+  ): Promise<void> {
+    const school = await this.schoolsRepository.findOneById(id);
+    school.name = name;
+    school.address = address;
+    school.contact = contact;
+    await this.schoolsRepository.save(school);
+  }
+
   async create(
     name: string,
     address: string,
