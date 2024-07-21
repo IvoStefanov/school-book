@@ -16,6 +16,11 @@ export class SchoolsController {
     return this.schoolsService.findAll();
   }
 
+  @Get('school')
+  async getSchool(@Request() req) {
+    return this.schoolsService.findOne(req.body.name);
+  }
+
   @UseGuards(JwtAuthGuard)
   @Post('create-school')
   async createSchool(@Request() req) {

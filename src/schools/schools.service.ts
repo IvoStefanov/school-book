@@ -18,6 +18,10 @@ export class SchoolsService {
     return this.schoolsRepository.findOneBy({ id });
   }
 
+  findOneByName(name: string): Promise<School | null> {
+    return this.schoolsRepository.findOneBy({ name });
+  }
+
   async remove(id: number): Promise<void> {
     await this.schoolsRepository.delete(id);
   }
