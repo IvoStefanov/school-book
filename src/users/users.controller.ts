@@ -22,6 +22,7 @@ export class UsersController {
       req.body.role,
       req.body.username,
       req.body.password,
+      this.dataSource,
     );
   }
 }

@@ -2,12 +2,16 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
 import { Principle } from './principle.entity';
+import { SchoolsService } from 'src/schools/schools.service';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class PrinciplesService {
   constructor(
     @InjectRepository(Principle)
     private principlesRepository: Repository<Principle>,
+    private schoolsService: SchoolsService,
+    private usersService: UsersService,
   ) {}
 
   findAll(): Promise<Principle[]> {
@@ -33,18 +37,24 @@ export class PrinciplesService {
     address: string,
     contact: string,
     dataSource: DataSource,
-  ): Promise<void> {
+  ): Promise<Principle> {
+    const school = await this.schoolsService.findOne(schoolId);
+    const user = await this.usersService.findOneById(userId);
+
     const principleLike = {
-      schoolId: schoolId,
-      userId: userId,
       name: name,
       address: address,
       contact: contact,
+      school: school,
+      user: user,
     };
+
     const principle = this.principlesRepository.create(principleLike);
 
     await dataSource.transaction(async (manager) => {
       await manager.save(principle);
     });
+
+    return await this.findOneBySchool(schoolId);
   }
 }

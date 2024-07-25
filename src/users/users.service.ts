@@ -9,7 +9,6 @@ import { Role } from 'src/enums/role';
 @Injectable()
 export class UsersService {
   constructor(
-    private dataSource: DataSource,
     @InjectRepository(User)
     private usersRepository: Repository<User>,
   ) {
@@ -20,8 +19,12 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  async findOne(username: string): Promise<User | null> {
+  async findOneByUsername(username: string): Promise<User | null> {
     return this.usersRepository.findOneBy({ username });
+  }
+
+  findOneById(id: number): Promise<User | null> {
+    return this.usersRepository.findOneBy({ id });
   }
 
   async remove(id: number): Promise<void> {
@@ -32,6 +35,7 @@ export class UsersService {
     role: Role,
     username: string,
     password: string,
+    dataSource: DataSource,
   ): Promise<number> {
     const userLike = {
       username: username,
@@ -40,7 +44,7 @@ export class UsersService {
     };
     const user = this.usersRepository.create(userLike);
 
-    await this.dataSource.transaction(async (manager) => {
+    await dataSource.transaction(async (manager) => {
       await manager.save(user);
     });
 
