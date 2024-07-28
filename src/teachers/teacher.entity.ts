@@ -1,7 +1,13 @@
 import { SchoolSubject } from 'src/enums/subjects';
 import { School } from 'src/schools/school.entity';
 import { User } from 'src/users/user.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
 
 @Entity()
 export class Teacher {
@@ -18,7 +24,7 @@ export class Teacher {
   contact: string;
 
   @Column({ type: 'enum', enum: SchoolSubject })
-  subjects: SchoolSubject[];
+  subject: SchoolSubject;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne((type) => School, (school) => school.id)

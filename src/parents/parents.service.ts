@@ -15,7 +15,7 @@ export class ParentsService {
   }
 
   findOne(id: number): Promise<Parent | null> {
-    return this.parentsRepository.findOneBy({ id });
+    return this.parentsRepository.findOneBy({ id: id });
   }
 
   async remove(id: number): Promise<void> {

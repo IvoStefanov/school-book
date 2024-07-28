@@ -18,7 +18,7 @@ export class SchoolsController {
 
   @Get('school')
   async getSchool(@Request() req) {
-    return this.schoolsService.findOne(req.body.name);
+    return this.schoolsService.findOneByName(req.query.name);
   }
 
   @UseGuards(JwtAuthGuard)

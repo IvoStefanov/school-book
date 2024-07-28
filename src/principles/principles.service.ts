@@ -19,7 +19,7 @@ export class PrinciplesService {
   }
 
   findOne(id: number): Promise<Principle | null> {
-    return this.principlesRepository.findOneBy({ id });
+    return this.principlesRepository.findOneBy({ id: id });
   }
 
   findOneBySchool(id: number): Promise<Principle | null> {

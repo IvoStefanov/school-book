@@ -15,11 +15,11 @@ export class SchoolsService {
   }
 
   findOne(id: number): Promise<School | null> {
-    return this.schoolsRepository.findOneBy({ id });
+    return this.schoolsRepository.findOneBy({ id: id });
   }
 
   findOneByName(name: string): Promise<School | null> {
-    return this.schoolsRepository.findOneBy({ name });
+    return this.schoolsRepository.findOneBy({ name: name });
   }
 
   async remove(id: number): Promise<void> {

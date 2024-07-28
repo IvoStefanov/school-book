@@ -15,7 +15,7 @@ export class SchedulesService {
   }
 
   findOne(id: number): Promise<Schedule | null> {
-    return this.schedulesRepository.findOneBy({ id });
+    return this.schedulesRepository.findOneBy({ id: id });
   }
 
   async remove(id: number): Promise<void> {

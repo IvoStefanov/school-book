@@ -12,7 +12,7 @@ export class PrinciplesController {
 
   @Get('principle-by-school')
   async getPrincipleBySchool(@Request() req) {
-    return this.principlesService.findOneBySchool(req.body.id);
+    return this.principlesService.findOneBySchool(req.query.school);
   }
 
   @UseGuards(JwtAuthGuard)

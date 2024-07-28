@@ -15,7 +15,7 @@ export class StudentsService {
   }
 
   findOne(id: number): Promise<Student | null> {
-    return this.studentsRepository.findOneBy({ id });
+    return this.studentsRepository.findOneBy({ id: id });
   }
 
   async remove(id: number): Promise<void> {

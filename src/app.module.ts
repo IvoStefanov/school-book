@@ -30,6 +30,7 @@ import { ParentsModule } from './parents/parents.module';
       username: 'root',
       password: 'root',
       database: 'schoolbook',
+      logging: 'all',
       entities: [
         User,
         Student,

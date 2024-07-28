@@ -12,7 +12,7 @@ export class UsersController {
 
   // @Get('userId')
   // async getUserId(@Request() req) {
-  //   return this.usersService.findOne(req.body.username);
+  //   return this.usersService.findOne(req.query.username);
   // }
 
   @UseGuards(JwtAuthGuard)

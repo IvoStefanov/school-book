@@ -15,7 +15,7 @@ export class EvaluationService {
   }
 
   findOne(id: number): Promise<Evaluation | null> {
-    return this.evaluationRepository.findOneBy({ id });
+    return this.evaluationRepository.findOneBy({ id: id });
   }
 
   async remove(id: number): Promise<void> {

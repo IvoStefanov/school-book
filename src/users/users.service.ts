@@ -20,11 +20,11 @@ export class UsersService {
   }
 
   async findOneByUsername(username: string): Promise<User | null> {
-    return this.usersRepository.findOneBy({ username });
+    return this.usersRepository.findOneBy({ username: username });
   }
 
   findOneById(id: number): Promise<User | null> {
-    return this.usersRepository.findOneBy({ id });
+    return this.usersRepository.findOneBy({ id: id });
   }
 
   async remove(id: number): Promise<void> {
@@ -48,6 +48,6 @@ export class UsersService {
       await manager.save(user);
     });
 
-    return (await this.usersRepository.findOneBy({ username })).id;
+    return (await this.usersRepository.findOneBy({ username: username })).id;
   }
 }
