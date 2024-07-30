@@ -7,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
   OneToOne,
   JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 
 @Entity()
@@ -27,7 +28,7 @@ export class Teacher {
   subject: SchoolSubject;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @OneToOne((type) => School, (school) => school.id)
+  @ManyToOne((type) => School, (school) => school.id)
   @JoinColumn()
   school: School;
 

@@ -23,7 +23,7 @@ export class PrinciplesService {
   }
 
   findOneBySchool(id: number): Promise<Principle | null> {
-    return this.principlesRepository.findOneBy({ school: { id: id } });
+    return this.principlesRepository.findOne({ where: { school: { id: id } } });
   }
 
   async remove(id: number): Promise<void> {
@@ -56,5 +56,20 @@ export class PrinciplesService {
     });
 
     return await this.findOneBySchool(schoolId);
+  }
+
+  async update(
+    schoolId: number,
+    name: string,
+    address: string,
+    contact: string,
+  ): Promise<Principle> {
+    const principle = await this.findOneBySchool(schoolId);
+    principle.name = name;
+    principle.address = address;
+    principle.contact = contact;
+    await this.principlesRepository.save(principle);
+
+    return principle;
   }
 }

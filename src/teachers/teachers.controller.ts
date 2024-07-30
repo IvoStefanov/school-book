@@ -13,7 +13,7 @@ export class TeachersController {
   @UseGuards(JwtAuthGuard)
   @Get('teachers')
   async getTeachers(@Request() req) {
-    return this.teachersService.find(req.query.school);
+    return this.teachersService.findBySchoolId(req.query.school);
   }
 
   @Get('teacher')

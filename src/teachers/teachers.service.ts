@@ -19,8 +19,10 @@ export class TeachersService {
     return this.teachersRepository.find();
   }
 
-  find(id: number): Promise<Teacher[]> {
-    return this.teachersRepository.find({ school: id });
+  findBySchoolId(id: number): Promise<Teacher[]> {
+    return this.teachersRepository.find({
+      where: { school: { id: id } },
+    });
   }
 
   findOne(id: number): Promise<Teacher | null> {
@@ -68,7 +70,7 @@ export class TeachersService {
     contact: string,
     subject: SchoolSubject,
   ): Promise<void> {
-    const teacher = await this.teachersRepository.findOneById(id);
+    const teacher = await this.findOne(id);
     teacher.name = name;
     teacher.address = address;
     teacher.contact = contact;

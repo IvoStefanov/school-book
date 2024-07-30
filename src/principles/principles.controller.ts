@@ -27,4 +27,21 @@ export class PrinciplesController {
       this.dataSource,
     );
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('update-principle')
+  async updatePrinciple(@Request() req) {
+    return this.principlesService.update(
+      req.body.id,
+      req.body.name,
+      req.body.address,
+      req.body.contact,
+    );
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('remove-principle')
+  async removePrinciple(@Request() req) {
+    return this.principlesService.remove(req.body.id);
+  }
 }
