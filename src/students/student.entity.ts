@@ -1,7 +1,14 @@
 import { Grade } from 'src/enums/grade';
 import { School } from 'src/schools/school.entity';
 import { User } from 'src/users/user.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
 
 @Entity()
 export class Student {
@@ -21,7 +28,7 @@ export class Student {
   grade: Grade;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @OneToOne((type) => School, (school) => school.id)
+  @ManyToOne((type) => School, (school) => school.id)
   @JoinColumn()
   school: School;
 
