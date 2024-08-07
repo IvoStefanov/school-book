@@ -17,6 +17,6 @@ import { User } from 'src/users/user.entity';
   ],
   providers: [StudentsService, UsersService, JwtService, SchoolsService],
   controllers: [StudentsController],
-  exports: [TypeOrmModule],
+  exports: [TypeOrmModule, StudentsService],
 })
 export class StudentsModule {}
