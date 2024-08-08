@@ -17,6 +17,7 @@ export class Schedule {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @ManyToOne((type) => School, (school) => school.id)
+  @JoinColumn()
   school: School;
 
   @Column({ type: 'enum', enum: Grade })
