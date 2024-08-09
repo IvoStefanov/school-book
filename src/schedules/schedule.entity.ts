@@ -16,7 +16,7 @@ export class Schedule {
   id: number;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @ManyToOne((type) => School, (school) => school.id)
+  @ManyToOne((type) => School, (school) => school.id, { eager: true })
   @JoinColumn()
   school: School;
 
@@ -24,7 +24,7 @@ export class Schedule {
   grade: Grade;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @ManyToOne((type) => Teacher, (teacher) => teacher.id)
+  @ManyToOne((type) => Teacher, (teacher) => teacher.id, { eager: true })
   @JoinColumn()
   teacher: Teacher;
 
