@@ -20,6 +20,7 @@ import { TeachersModule } from './teachers/teachers.module';
 import { SchedulesModule } from './schedules/schedules.module';
 import { PrinciplesModule } from './principles/principles.module';
 import { ParentsModule } from './parents/parents.module';
+import { EvaluationModule } from './evaluation/evaluation.module';
 
 @Module({
   imports: [
@@ -53,6 +54,7 @@ import { ParentsModule } from './parents/parents.module';
     PrinciplesModule,
     ParentsModule,
     AuthModule,
+    EvaluationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

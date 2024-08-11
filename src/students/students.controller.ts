@@ -13,7 +13,11 @@ export class StudentsController {
   @UseGuards(JwtAuthGuard)
   @Get('students')
   async getStudents(@Request() req) {
-    return this.studentsService.findBySchoolId(req.query.school);
+    if (req.query.school) {
+      return this.studentsService.findBySchoolId(req.query.school);
+    } else if (req.query.grade) {
+      return this.studentsService.findByGrade(req.query.grade);
+    }
   }
 
   @Get('student')

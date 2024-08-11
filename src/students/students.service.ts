@@ -25,6 +25,12 @@ export class StudentsService {
     });
   }
 
+  findByGrade(grade: Grade): Promise<Student[]> {
+    return this.studentsRepository.find({
+      where: { grade: grade },
+    });
+  }
+
   findOne(id: number): Promise<Student | null> {
     return this.studentsRepository.findOneBy({ id: id });
   }
