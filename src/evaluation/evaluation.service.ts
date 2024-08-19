@@ -25,9 +25,12 @@ export class EvaluationService {
   }
 
   findByStudentIdAndSubject(studentId: number, subject: SchoolSubject) {
-    return this.evaluationRepository.findOne({
-      where: { student: { id: studentId }, subject: subject },
-    });
+    return this.evaluationRepository
+      .createQueryBuilder('evaluation')
+      .where(
+        `evaluation.studentId = "${studentId}" AND evaluation.subject = "${subject}"`,
+      )
+      .getOne();
   }
 
   findByStudentId(studentId: number) {
@@ -41,37 +44,39 @@ export class EvaluationService {
     subject: SchoolSubject,
     marks: number[],
     dataSource: DataSource,
-  ): Promise<number[]> {
+  ): Promise<void> {
     const evaluationLike = {
       student: student,
       subject: subject,
       marks: marks,
     };
 
+    if (
+      !evaluationLike.student ||
+      !evaluationLike.subject ||
+      !evaluationLike.marks
+    ) {
+      return;
+    }
+
     const evaluation = this.evaluationRepository.create(evaluationLike);
 
-    await dataSource.transaction(async (manager) => {
+    return await dataSource.transaction(async (manager) => {
       await manager.save(evaluation);
     });
-
-    return (await this.findByStudentIdAndSubject(student.id, subject)).marks;
   }
 
   async update(
     student: Student,
     subject: SchoolSubject,
     marks: number[],
-  ): Promise<number[]> {
+  ): Promise<void> {
     const evaluation = await this.findByStudentIdAndSubject(
       student.id,
       subject,
     );
 
-    evaluation.student = student;
-    evaluation.subject = subject;
     evaluation.marks = marks;
     await this.evaluationRepository.save(evaluation);
-
-    return (await this.findByStudentIdAndSubject(student.id, subject)).marks;
   }
 }

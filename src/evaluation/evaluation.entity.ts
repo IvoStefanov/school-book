@@ -17,7 +17,7 @@ export class Evaluation {
   marks: number[];
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @OneToOne((type) => Student, (student) => student.id, { eager: true })
+  @OneToOne((type) => Student, (student) => student.id)
   @JoinColumn()
   student: Student;
 
