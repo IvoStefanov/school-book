@@ -1,6 +1,12 @@
 import { Student } from 'src/students/student.entity';
 import { SchoolSubject } from 'src/enums/subjects';
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
 
 @Entity()
 export class Absence {
@@ -8,10 +14,10 @@ export class Absence {
   id: number;
 
   @Column()
-  date: Date;
+  date: string;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @OneToOne((type) => Student, (student) => student.id)
+  @ManyToOne((type) => Student, (student) => student.id)
   @JoinColumn()
   student: Student;
 

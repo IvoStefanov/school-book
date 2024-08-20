@@ -13,12 +13,16 @@ export class EvaluationController {
   @UseGuards(JwtAuthGuard)
   @Get('evaluation')
   async getEvaluation(@Request() req) {
-    return (
+    let marks = (
       await this.evaluationService.findByStudentIdAndSubject(
         req.query.studentId,
         req.query.subject,
       )
-    ).marks;
+    )?.marks;
+    if (!marks?.length) {
+      marks = [];
+    }
+    return marks;
   }
 
   @UseGuards(JwtAuthGuard)

@@ -21,6 +21,7 @@ import { SchedulesModule } from './schedules/schedules.module';
 import { PrinciplesModule } from './principles/principles.module';
 import { ParentsModule } from './parents/parents.module';
 import { EvaluationModule } from './evaluation/evaluation.module';
+import { AbsenceModule } from './absence/absence.module';
 
 @Module({
   imports: [
@@ -55,6 +56,7 @@ import { EvaluationModule } from './evaluation/evaluation.module';
     ParentsModule,
     AuthModule,
     EvaluationModule,
+    AbsenceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
