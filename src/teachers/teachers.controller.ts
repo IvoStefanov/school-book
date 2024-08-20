@@ -16,6 +16,11 @@ export class TeachersController {
     return this.teachersService.findBySchoolId(req.query.school);
   }
 
+  @Get('teacher-by-user')
+  async getTeacherByUser(@Request() req) {
+    return this.teachersService.findOneByUser(req.query.user);
+  }
+
   @Get('teacher')
   async getTeacher(@Request() req) {
     return this.teachersService.findOne(req.query.id);

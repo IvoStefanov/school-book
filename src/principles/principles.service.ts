@@ -22,6 +22,10 @@ export class PrinciplesService {
     return this.principlesRepository.findOneBy({ id: id });
   }
 
+  findOneByUser(id: number): Promise<Principle | null> {
+    return this.principlesRepository.findOne({ where: { user: { id: id } } });
+  }
+
   findOneBySchool(id: number): Promise<Principle | null> {
     return this.principlesRepository.findOne({ where: { school: { id: id } } });
   }

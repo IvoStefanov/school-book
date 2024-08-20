@@ -10,6 +10,11 @@ export class PrinciplesController {
     private dataSource: DataSource,
   ) {}
 
+  @Get('principle-by-user')
+  async getPrincipleByUser(@Request() req) {
+    return this.principlesService.findOneByUser(req.query.user);
+  }
+
   @Get('principle-by-school')
   async getPrincipleBySchool(@Request() req) {
     return this.principlesService.findOneBySchool(req.query.school);

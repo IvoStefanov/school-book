@@ -20,6 +20,11 @@ export class StudentsController {
     }
   }
 
+  @Get('student-by-user')
+  async getStudentByUser(@Request() req) {
+    return this.studentsService.findOneByUser(req.query.user);
+  }
+
   @Get('student')
   async getStudent(@Request() req) {
     return this.studentsService.findOne(req.query.id);

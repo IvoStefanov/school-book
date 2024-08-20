@@ -28,12 +28,12 @@ export class Student {
   grade: Grade;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @ManyToOne((type) => School, (school) => school.id)
+  @ManyToOne((type) => School, (school) => school.id, { eager: true })
   @JoinColumn()
   school: School;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @OneToOne((type) => User, (user) => user.id)
+  @OneToOne((type) => User, (user) => user.id, { eager: true })
   @JoinColumn()
   user: User;
 

@@ -1,6 +1,6 @@
 export enum Role {
   Admin,
-  Principal,
+  Principle,
   Teacher,
   Student,
   Parent,

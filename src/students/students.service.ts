@@ -19,6 +19,10 @@ export class StudentsService {
     return this.studentsRepository.find();
   }
 
+  findOneByUser(id: number): Promise<Student | null> {
+    return this.studentsRepository.findOne({ where: { user: { id: id } } });
+  }
+
   findBySchoolId(id: number): Promise<Student[]> {
     return this.studentsRepository.find({
       where: { school: { id: id } },

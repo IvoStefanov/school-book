@@ -16,6 +16,11 @@ export class SchoolsController {
     return this.schoolsService.findAll();
   }
 
+  @Get('school-by-id')
+  async getSchoolById(@Request() req) {
+    return this.schoolsService.findOne(req.query.id);
+  }
+
   @Get('school')
   async getSchool(@Request() req) {
     return this.schoolsService.findOneByName(req.query.name);

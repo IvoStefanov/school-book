@@ -23,12 +23,12 @@ export class Principle {
   contact: string;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @OneToOne((type) => School, (school) => school.id)
+  @OneToOne((type) => School, (school) => school.id, { eager: true })
   @JoinColumn()
   school: School;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @OneToOne((type) => User, (user) => user.id)
+  @OneToOne((type) => User, (user) => user.id, { eager: true })
   @JoinColumn()
   user: User;
 }
