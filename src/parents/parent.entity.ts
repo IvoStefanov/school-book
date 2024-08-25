@@ -1,10 +1,9 @@
-import { Student } from 'src/students/student.entity';
+import { School } from 'src/schools/school.entity';
 import { User } from 'src/users/user.entity';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  OneToMany,
   OneToOne,
   JoinColumn,
 } from 'typeorm';
@@ -24,9 +23,9 @@ export class Parent {
   contact: string;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @OneToMany((type) => Student, (student) => student.id)
+  @OneToOne((type) => School, (school) => school.id, { eager: true })
   @JoinColumn()
-  children: Student[];
+  school: School;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne((type) => User, (user) => user.id)

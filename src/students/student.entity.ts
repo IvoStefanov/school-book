@@ -1,4 +1,5 @@
 import { Grade } from 'src/enums/grade';
+import { Parent } from 'src/parents/parent.entity';
 import { School } from 'src/schools/school.entity';
 import { User } from 'src/users/user.entity';
 import {
@@ -33,11 +34,12 @@ export class Student {
   school: School;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  @ManyToOne((type) => Parent, (parent) => parent.id)
+  @JoinColumn()
+  parent: Parent;
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne((type) => User, (user) => user.id, { eager: true })
   @JoinColumn()
   user: User;
-
-  // Absence table reference |student |subject |date
-
-  // Grades table reference |student |subject |grade
 }
