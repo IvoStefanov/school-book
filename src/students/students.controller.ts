@@ -57,6 +57,12 @@ export class StudentsController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Post('update-student-parent')
+  async updateStudentParent(@Request() req) {
+    return this.studentsService.updateParent(req.body.id, req.body.parentId);
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Post('remove-student')
   async removeStudent(@Request() req) {
     return this.studentsService.remove(req.body.id);

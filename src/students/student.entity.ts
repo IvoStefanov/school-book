@@ -34,7 +34,7 @@ export class Student {
   school: School;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @ManyToOne((type) => Parent, (parent) => parent.id)
+  @ManyToOne((type) => Parent, (parent) => parent.id, { eager: true })
   @JoinColumn()
   parent: Parent;
 

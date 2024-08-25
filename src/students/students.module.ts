@@ -8,14 +8,23 @@ import { SchoolsService } from 'src/schools/schools.service';
 import { UsersService } from 'src/users/users.service';
 import { School } from 'src/schools/school.entity';
 import { User } from 'src/users/user.entity';
+import { ParentsService } from 'src/parents/parents.service';
+import { Parent } from 'src/parents/parent.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Student]),
     TypeOrmModule.forFeature([User]),
     TypeOrmModule.forFeature([School]),
+    TypeOrmModule.forFeature([Parent]),
   ],
-  providers: [StudentsService, UsersService, JwtService, SchoolsService],
+  providers: [
+    StudentsService,
+    UsersService,
+    JwtService,
+    SchoolsService,
+    ParentsService,
+  ],
   controllers: [StudentsController],
   exports: [TypeOrmModule, StudentsService],
 })

@@ -5,12 +5,14 @@ import { Student } from './student.entity';
 import { SchoolsService } from 'src/schools/schools.service';
 import { UsersService } from 'src/users/users.service';
 import { Grade } from 'src/enums/grade';
+import { ParentsService } from 'src/parents/parents.service';
 
 @Injectable()
 export class StudentsService {
   constructor(
     @InjectRepository(Student)
     private studentsRepository: Repository<Student>,
+    private parentService: ParentsService,
     private schoolsService: SchoolsService,
     private usersService: UsersService,
   ) {}
@@ -41,6 +43,13 @@ export class StudentsService {
 
   async remove(id: number): Promise<void> {
     await this.studentsRepository.delete(id);
+  }
+
+  async updateParent(id: number, parentId: number): Promise<Student> {
+    const student = await this.findOne(id);
+    const parent = await this.parentService.findOne(parentId);
+    student.parent = parent;
+    return await this.studentsRepository.save(student);
   }
 
   async create(
