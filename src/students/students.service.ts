@@ -37,6 +37,12 @@ export class StudentsService {
     });
   }
 
+  findByParentId(parentId: number): Promise<Student[]> {
+    return this.studentsRepository.find({
+      where: { parent: { id: parentId } },
+    });
+  }
+
   findOne(id: number): Promise<Student | null> {
     return this.studentsRepository.findOneBy({ id: id });
   }

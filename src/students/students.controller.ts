@@ -20,6 +20,11 @@ export class StudentsController {
     }
   }
 
+  @Get('students-by-parent')
+  async getStudentsByParent(@Request() req) {
+    return this.studentsService.findByParentId(req.query.parentId);
+  }
+
   @Get('student-by-user')
   async getStudentByUser(@Request() req) {
     return this.studentsService.findOneByUser(req.query.user);

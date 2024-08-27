@@ -26,6 +26,10 @@ export class ParentsService {
     return this.parentsRepository.findOneBy({ id: id });
   }
 
+  findOneByUser(id: number): Promise<Parent | null> {
+    return this.parentsRepository.findOne({ where: { user: { id: id } } });
+  }
+
   async remove(id: number): Promise<void> {
     await this.parentsRepository.delete(id);
   }

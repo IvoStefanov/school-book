@@ -20,6 +20,11 @@ export class ParentsController {
     return this.parentService.findAllBySchool(req.query.schoolId);
   }
 
+  @Get('parent-by-user')
+  async getParentByUser(@Request() req) {
+    return this.parentService.findOneByUser(req.query.user);
+  }
+
   @UseGuards(JwtAuthGuard)
   @Post('create-parent')
   async createParent(@Request() req) {
